@@ -1,0 +1,22 @@
+services:
+
+    web:
+        container_name: django
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        networks:
+            - django_lan
+        command: "python manage.py runserver 0.0.0.0:5555"
+        volumes:
+            - app:/app
+        ports:
+        - "5555:5555"
+
+volumes:
+    app:
+networks:
+    django_lan:
+        driver: bridge
+        driver_opts:
+            com.docker.network.bridge.host_binding_ipv4: "127.0.0.1"
