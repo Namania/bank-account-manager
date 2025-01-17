@@ -8,7 +8,12 @@ def index(request):
         return redirect("login")
     userId = request.session["id"]
     accounts = Account.objects.all()
-    return render(request, "app/index.html", {"accounts": accounts, "userId": userId})
+
+    totalAmount = 0
+    for account in accounts:
+        totalAmount += account.balance.amount
+
+    return render(request, "app/index.html", {"accounts": accounts, "userId": userId, "totalAmount": totalAmount})
 
 def accountView(request, accountId):
     if "username" not in request.session.keys():

@@ -1,3 +1,18 @@
 .error {
     color: brown;
 }
+
+.list-btn-item {
+    margin-bottom: 0;
+    margin-right: 10px;
+}
+
+.card-header-flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.py-3 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}

@@ -17,6 +17,8 @@
 <!-- Custom fixes for django -->
 <link rel="stylesheet" href="/static/jazzmin/css/main.css">
 
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
 <!-- favicons -->
 <link rel="shortcut icon" href="/static/image/logo.png" type="image/png">
 <link rel="icon" href="/static/image/logo.png" sizes="32x32" type="image/png">
@@ -120,6 +122,37 @@
                         <div class="col-lg-9 col-12">
                             <div class="row">
                                 <div class="col-md-6 col-sm-12">
+                                    <div class="card">
+                                        <div class="card-header card-header-flex">
+                                            <h5 class="m-0">Sum of all accounts</h5>
+                                            <div style="width: 300px;"></div>
+                                            <p>€{{ totalAmount }}</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <table class="table table-sm">
+                                                <tbody>
+                                                    {% for account in accounts %}
+                                                        <tr>
+                                                            <td>
+                                                                <a href="/{{ account.id }}/">{{ account.label }}</a>
+                                                            </td>
+                                                            <td>
+                                                                <div class="btn-group float-right">
+                                                                    <p class="list-btn-item">{{ account.balance }}</p>
+                                                                    <a href="/{{ account.id }}/" class="btn btn-xs btn-success">Go there</a>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="card py-3">
+                                        <canvas id="pie-chart"></canvas>
+                                    </div>
                                 </div>
                             <div>
                         </div>
@@ -143,6 +176,9 @@
 <div id="sidebar-overlay"></div></div>
 
 
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script src="{% static 'js/chart.js' %}"></script>
 
 <!-- jQuery -->
 <script src="/static/admin/js/vendor/jquery/jquery.js"></script>
