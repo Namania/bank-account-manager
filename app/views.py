@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from .models import Account
 
-# Create your views here.
 def index(request):
-    latest_question_list = Account.objects.order_by("-create_at")[:5]
-    context = {"latest_question_list": latest_question_list}
-    return render(request, "index.html", context)
+    accounts = Account.objects.all()
+    return render(request, "app/index.html", {"accounts": accounts})
+
+def accountView(request, accountId):
+    account = get_object_or_404(Account, pk=accountId)
+    return render(request, "app/account.html", {"account": account})

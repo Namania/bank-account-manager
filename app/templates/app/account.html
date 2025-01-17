@@ -1,0 +1,9 @@
+{% if account is not None %}
+    {{ account.label }}
+    <br>
+    {{ account.balance }}
+    <br>
+    {{ account.create_at }}
+{% else %}
+    <p>No account</p>
+{% endif %}

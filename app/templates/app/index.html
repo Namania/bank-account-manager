@@ -1,0 +1,155 @@
+{% load static %}
+
+<title>Account Manager</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<!--  Prevent admin panel being crawled by search engines -->
+<meta name="robots" content="none, noarchive">
+
+<!-- Font Awesome Icons -->
+<link rel="stylesheet" href="/static/vendor/fontawesome-free/css/all.min.css">
+
+<!-- Bootstrap and adminLTE -->
+<link rel="stylesheet" href="/static/vendor/adminlte/css/adminlte.min.css" id="adminlte-css">
+
+<!-- Custom fixes for django -->
+<link rel="stylesheet" href="/static/jazzmin/css/main.css">
+
+<!-- favicons -->
+<link rel="shortcut icon" href="/static/image/logo.png" type="image/png">
+<link rel="icon" href="/static/image/logo.png" sizes="32x32" type="image/png">
+
+<!-- Google Font: Source Sans Pro -->
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+<div class="wrapper">
+
+    <!-- dropdown menu -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light" id="jazzy-navbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link btn" data-toggle="dropdown" href="#" title="admin">
+                    <i class="far fa-user" aria-hidden="true"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-left" id="jazzy-usermenu">
+                    <span class="dropdown-header">Account</span>
+                    <div class="dropdown-divider"></div>
+                    <a href="/admin/password_change/" class="dropdown-item">
+                        <i class="fas fa-key mr-2"></i> Change password
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <form id="logout-form" method="post" action="/admin/logout/">
+                        <input type="hidden" name="csrfmiddlewaretoken" value="ng6bZ3m4DGlWhupzgexo7xSrhLpXeWOGE8lDop5LioVGJFf7SNItjbe6nHfcPXbm">
+                        <button type="submit" class="dropdown-item"><i class="fas fa-users mr-2"></i> Log out</button>
+                    </form>
+                    <div class="dropdown-divider"></div>
+                        <a href="/admin/auth/user/1/change/" class="dropdown-item dropdown-footer">See Profile</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    
+    <!-- side bar -->
+    <aside class="main-sidebar elevation-4 sidebar-dark-primary" id="jazzy-sidebar">
+        <a href="/" class="brand-link active" id="jazzy-logo">
+            <img src="/static/image/logo.png" alt="Account Manager Logo" class="img-circle brand-image elevation-3" style="opacity: .8">
+            <span class="brand-text font-weight-light">Account Manager</span>
+        </a>
+        <div class="sidebar">
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-collapsible="false">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link active">
+                            <i class="nav-icon fas fa-th-large"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="nav-header">Accounts</li>
+                    {% for account in accounts %}
+                        <li class="nav-item">
+                            <a href="/{{ account.id }}/" class="nav-link">
+                                <i class="nav-icon fas fa-circle"></i> <p>{{ account.label }}</p>
+                            </a>
+                        </li>
+                    {% endfor %}
+                    <li class="nav-header">Authentication and Authorization</li>
+                        <li class="nav-item">
+                            <a href="/admin/auth/group/" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i> <p>Groups</p>
+                            </a>
+                        </li>
+                    <li class="nav-item">
+                        <a href="/admin/auth/user/" class="nav-link">
+                            <i class="nav-icon fas fa-user"></i> <p>Users</p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </aside>
+
+    <!-- Content -->
+    <div class="content-wrapper" style="min-height: 381px;">
+        <!-- Header path -->
+        <div class="content border-bottom mb-2">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-md-auto d-flex flex-grow-1 align-items-center">
+                        <h1 class="h4 m-0 pr-3 mr-3 border-right"> Dashboard </h1>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/admin/" class="active">Home</a></li>
+                            <li class="breadcrumb-item">Dashboard</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- content -->
+        <div class="content">
+            <div class="container-fluid">
+                <section id="content" class="content">
+                    <div class="row">
+                        <div class="col-lg-9 col-12">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                </div>
+                            <div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright -->
+    <footer class="main-footer ">
+        <div class="float-right d-none d-sm-inline">
+            <b>Namania</b>
+        </div>
+        <strong>Copyright © 2025 .</strong> All rights reserved.
+    </footer>
+    
+
+
+
+<div id="sidebar-overlay"></div></div>
+
+
+
+<!-- jQuery -->
+<script src="/static/admin/js/vendor/jquery/jquery.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/static/vendor/adminlte/js/adminlte.min.js"></script>
+<!-- Django customisations -->
+<script src="/static/jazzmin/js/main.js"></script>
