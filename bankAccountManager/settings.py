@@ -31,8 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',
     'app.apps.AppConfig',
+    'djmoney',
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +41,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Bank Account Manager",
+    "site_header": "Account Manager",
+    "site_brand": "Account Manager",
+    "welcome_sign": "Welcome to bank account manager !",
+    "site_logo": "/image/logo.png",
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -56,7 +65,7 @@ ROOT_URLCONF = 'bankAccountManager.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
