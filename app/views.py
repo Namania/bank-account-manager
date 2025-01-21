@@ -4,8 +4,9 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth import authenticate
 
 from django.contrib.auth.models import User
+from django.db.models import Q
 
-from .models import Account
+from .models import Account, Transaction
 
 def index(request):
     if "username" not in request.session.keys():
@@ -26,14 +27,17 @@ def index(request):
         ]
     }
 
+    account_ids = []
     totalAmount = 0
     for account in accounts:
+        account_ids.append(account.pk)
         datasets["labels"].append(account.label)
         datasets["data"].append(int(account.balance.amount))
         datasets["backgroundColor"].append(GREEN if account.isPositive() else RED)
         totalAmount += account.balance
 
-    return render(request, "app/index.html", {"accounts": accounts, "userId": userId, "totalAmount": totalAmount, "json": json.dumps(datasets)})
+    transactions = Transaction.objects.filter(Q(sender__in=account_ids) | Q(receiver__in=account_ids)).order_by("-create_at")[:5]
+    return render(request, "app/index.html", {"accounts": accounts, "userId": userId, "totalAmount": totalAmount, "json": json.dumps(datasets), "transactions": transactions})
 
 def accountView(request, accountId):
     if "username" not in request.session.keys():
