@@ -29,3 +29,7 @@
     padding: 12px 20px;
     padding-bottom: 0;
 }
+
+.little-button-radius {
+    border-radius: 5px !important;
+}
