@@ -13,11 +13,13 @@ def index(request):
     userId = request.session["id"]
     user = get_object_or_404(User, pk=userId)
 
-    accounts = Account.objects.filter(owner=user)
+    accounts = Account.objects.filter(owner=user).order_by("balance").reverse()
 
     RED = 'rgb(233, 24, 69)'
     GREEN = 'rgb(36, 202, 14)'
     datasets = {
+        "labels": [
+        ],
         "data": [
         ],
         "backgroundColor": [
@@ -26,6 +28,7 @@ def index(request):
 
     totalAmount = 0
     for account in accounts:
+        datasets["labels"].append(account.label)
         datasets["data"].append(int(account.balance.amount))
         datasets["backgroundColor"].append(GREEN if account.isPositive() else RED)
         totalAmount += account.balance
@@ -37,6 +40,20 @@ def accountView(request, accountId):
         return redirect("login")
     account = get_object_or_404(Account, pk=accountId)
     return render(request, "app/account.html", {"account": account})
+
+def newAccountView(request):
+    if "username" not in request.session.keys():
+        return redirect("login")
+    userId = request.session["id"]
+    user = get_object_or_404(User, pk=userId)
+
+
+    if request.method == "POST":
+        Account.objects.create(owner=user, label=request.POST["label"], balance=request.POST["balance"])
+        return redirect("index")
+
+    accounts = Account.objects.filter(owner=user)
+    return render(request, "app/new-account.html", {"accounts": accounts})
 
 def login(request):
     error = False

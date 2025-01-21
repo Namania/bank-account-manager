@@ -2,9 +2,7 @@ const element = document.getElementById("json");
 const json = JSON.parse(element.innerText);
 
 const data = {
-    labels: [
-        '',
-    ],
+    labels: json["labels"],
     datasets: [{
         data: json["data"],
         backgroundColor: json["backgroundColor"],
