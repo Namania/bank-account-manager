@@ -10,5 +10,5 @@ def newTransactionView(request):
 
     accountId = int(request.GET["id"]) if request.method == "GET" and "id" in request.GET.keys() and request.GET["id"].isnumeric() else ""
 
-    accounts = Account.objects.filter(owner=user)
+    accounts = Account.objects.filter(owner=user).order_by("balance").reverse()
     return render(request, "app/new-transaction.html", {"accounts": accounts, "accountId": accountId})

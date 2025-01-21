@@ -20,5 +20,5 @@ def newAccountView(request):
         Account.objects.create(owner=user, label=request.POST["label"], balance=request.POST["balance"])
         return redirect("index")
 
-    accounts = Account.objects.filter(owner=user)
+    accounts = Account.objects.filter(owner=user).order_by("balance").reverse()
     return render(request, "app/new-account.html", {"accounts": accounts})
