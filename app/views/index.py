@@ -39,5 +39,5 @@ def index(request):
     month, year = (now.month - 1, now.year) if now.month != 1 else (12, now.year - 1)
     last_month = now.replace(day=1, month=month, year=year)
 
-    transactions = Transaction.objects.filter(Q(sender__in=account_ids) | Q(receiver__in=account_ids) & Q(create_at__range=[last_month, current_month])).order_by("-create_at")[:4]
+    transactions = Transaction.objects.filter(Q(sender__in=account_ids) | Q(receiver__in=account_ids) & Q(create_at__range=[last_month, current_month])).order_by("-create_at")[:5]
     return render(request, "app/index.html", {"accounts": accounts, "user": user, "totalAmount": totalAmount, "json": json.dumps(datasets), "transactions": transactions})

@@ -99,7 +99,7 @@
     </aside>
 
     <!-- Content -->
-    <div class="content-wrapper" style="min-height: 381px;">
+    <div class="content-wrapper h-auto pb-3">
         <!-- Header path -->
         <div class="content border-bottom mb-2">
             <div class="container-fluid">
@@ -122,7 +122,7 @@
                     <div class="row">
                         <div class="col-lg-9 col-12">
                             <div class="row">
-                                <div class="col-md-6 col-sm-12">
+                                <div class="col-md-12 col-sm-12">
                                     <div class="card">
                                         <div class="header-card card-header-flex w-100 fs-4 align-items-center">
                                             <h5 class="m-0 fs-4">Sum of all accounts</h5>
@@ -136,9 +136,11 @@
                                                             <td>
                                                                 <a href="/{{ account.id }}/">{{ account.label }}</a>
                                                             </td>
+                                                            <td class="text-end">
+                                                                <p class="list-btn-item">{{ account.balance.amount }} {{ account.balance.currency }}</p>
+                                                            </td>
                                                             <td>
                                                                 <div class="btn-group float-right align-items-center">
-                                                                    <p class="list-btn-item">{{ account.balance.amount }} {{ account.balance.currency }}</p>
                                                                     <a href="/{{ account.id }}/" class="btn btn-xs little-button-radius btn-primary fs-6 me-1">Go there</a>
                                                                     <a href="/new-transaction/?id={{ account.id }}" class="btn btn-xs little-button-radius btn-success fs-6">Make a transaction</a>
                                                                 </div>
@@ -150,7 +152,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-sm-12">
+                                <div class="col-md-12 col-sm-12">
                                     <div class="card">
                                         <div class="card-header card-header-flex fs-4">
                                             <h5 class="m-0 fs-4">Account Chart</h5>
