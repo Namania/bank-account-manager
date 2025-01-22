@@ -40,7 +40,7 @@ def accountView(request, accountId):
             color = RED
         datasets["backgroundColor"].append(color)
 
-    return render(request, "app/account.html", {"userId": userId,"accounts": accounts, "account": account, "json": json.dumps(datasets), "transactions": transactions[:5], "hasData": hasData})
+    return render(request, "app/account.html", {"userId": userId,"accounts": accounts, "account": account, "json": json.dumps(datasets), "transactions": transactions[:4], "hasData": hasData})
 
 def newAccountView(request):
     if "username" not in request.session.keys():

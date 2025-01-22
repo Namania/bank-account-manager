@@ -8,6 +8,8 @@ def newTransactionView(request):
     userId = request.session["id"]
     user = get_object_or_404(User, pk=userId)
 
+    accountId = int(request.GET["id"]) if "id" in request.GET.keys() and request.GET["id"].isnumeric() else ""
+
     if request.method == "POST":
         sender = Account.objects.get(pk=request.POST["sender"])
         receiver = Account.objects.get(pk=request.POST["receiver"])
@@ -15,9 +17,11 @@ def newTransactionView(request):
         comment = request.POST["description"]
 
         Transaction.objects.create(sender=sender, receiver=receiver, amount=amount, comment=comment)
-        return redirect("index")
+        if "url" in request.GET.keys() and request.GET["url"] == "account":
+            return redirect("account", accountId=accountId)
+        else:
+            return redirect("index")
 
-    accountId = int(request.GET["id"]) if request.method == "GET" and "id" in request.GET.keys() and request.GET["id"].isnumeric() else ""
     bank = request.GET["bank"] if request.method == "GET" and "bank" in request.GET.keys() else None
 
     sender = Account.objects.get(pk=accountId) if accountId != "" else None

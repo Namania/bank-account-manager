@@ -33,5 +33,5 @@ def index(request):
         datasets["backgroundColor"].append(GREEN if account.isPositive() else RED)
         totalAmount += account.balance
 
-    transactions = Transaction.objects.filter(Q(sender__in=account_ids) | Q(receiver__in=account_ids)).order_by("-create_at")[:5]
+    transactions = Transaction.objects.filter(Q(sender__in=account_ids) | Q(receiver__in=account_ids)).order_by("-create_at")[:4]
     return render(request, "app/index.html", {"accounts": accounts, "userId": userId, "totalAmount": totalAmount, "json": json.dumps(datasets), "transactions": transactions})
