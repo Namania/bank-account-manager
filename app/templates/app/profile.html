@@ -39,7 +39,7 @@
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
-                <a class="nav-link btn" data-toggle="dropdown" href="#" title="admin">
+                <a class="nav-link btn" data-toggle="dropdown" href="#" title="Profile">
                     <i class="far fa-user me-2" aria-hidden="true"></i>{{ user.get_full_name }}
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-left" id="jazzy-usermenu">
@@ -69,7 +69,7 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-collapsible="false">
                     <li class="nav-item">
-                        <a href="/" class="nav-link">
+                        <a href="/" class="nav-link active">
                             <i class="nav-icon fas fa-th-large"></i>
                             <p>Dashboard</p>
                         </a>
@@ -84,7 +84,7 @@
                     {% endfor %}
                     <li class="nav-header">Actions</li>
                     <li class="nav-item">
-                        <a href="/new-account/" class="nav-link active">
+                        <a href="/new-account/" class="nav-link">
                             <i class="nav-icon fas fa-plus"></i> <p>Add account</p>
                         </a>
                     </li>
@@ -105,11 +105,10 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 col-md-auto d-flex flex-grow-1 align-items-center">
-                        <h1 class="h4 m-0 pr-3 mr-3 border-right"> New </h1>
+                        <h1 class="h4 m-0 pr-3 mr-3 border-right"> Profile </h1>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/" class="active">Home</a></li>
-                            <li class="breadcrumb-item"><a href="/" class="active">Account</a></li>
-                            <li class="breadcrumb-item">New</li>
+                            <li class="breadcrumb-item">Profile</li>
                         </ol>
                     </div>
                 </div>
@@ -123,28 +122,83 @@
                     <div class="row">
                         <div class="col-lg-12 col-12">
                             <div class="row">
-                                <div class="col-md-12 col-sm-12">
+                                <div class="col-md-6 col-sm-12">
                                     <div class="card">
-                                        <div class="card-header card-header-flex fs-4">
-                                            <h5 class="m-0 fs-4">New account</h5>
+                                        <div class="header-card card-header-flex w-100 fs-4 align-items-center">
+                                            <h5 class="m-0 fs-4">Personal Information</h5>
+                                            <p class="mb-0">{{ totalAmount.amount }} {{ totalAmount.currency }}</p>
                                         </div>
-                                        <div class="card-body">
-                                            <form class="" method="post">
-                                                {% csrf_token %}
-                                                <div class="mb-3">
-                                                    <label for="labelhelp" class="form-label">Label</label>
-                                                    <input type="text" name="label" class="form-control" id="labelhelp" aria-describedby="labelhelp" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="balance" class="form-label">Balance</label>
-                                                    <input type="number" name="balance" min="0" class="form-control" id="balance" required>
-                                                </div>
-                                                <button type="submit" class="btn btn-success">Submit</button>
-                                            </form>
+                                        <div class="card-body pt-3">
+                                            <div class="mb-3 ms-3">
+                                                <b class="fs-5">Firstname</b>
+                                                <p>{{ user.first_name }}</p>
+                                            </div>
+                                            <div class="mb-3 ms-3">
+                                                <b class="fs-5">Lastname</b>
+                                                <p>{{ user.last_name }}</p>
+                                            </div>
+                                            <div class="mb-3 ms-3">
+                                                <b class="fs-5">Username</b>
+                                                <p>{{ user.username }}</p>
+                                            </div>
+                                            <div class="mb-3 ms-3">
+                                                <b class="fs-5">Email</b>
+                                                <p>{{ user.email }}</p>
+                                            </div>
+                                            <div class="mb-3 ms-3">
+                                                <b class="fs-5">Join date</b>
+                                                <p>{{ user.date_joined.ctime }}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            <div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="card">
+                                        <div class="header-card card-header-flex w-100 fs-4 align-items-center">
+                                            <h5 class="m-0 fs-4">System Information</h5>
+                                            <p class="mb-0">{{ totalAmount.amount }} {{ totalAmount.currency }}</p>
+                                        </div>
+                                        <div class="card-body pt-3">
+                                            <div class="mb-3 ms-3">
+                                                <b class="fs-5">Primary Key</b>
+                                                <p>{{ user.pk }}</p>
+                                            </div>
+                                            <div class="mb-3 ms-3">
+                                                <b class="fs-5">Is Staff</b>
+                                                {% if user.is_staff %}
+                                                    <p class="mt-1"><i class="text-success d-block fa-solid fa-check"></i></p>
+                                                {% else %}
+                                                    <p class="mt-1"><i class="text-danger d-block fa-solid fa-xmark"></i></p>
+                                                {% endif %}
+                                            </div>
+                                            <div class="mb-3 ms-3">
+                                                <b class="fs-5">Is Active</b>
+                                                {% if user.is_active %}
+                                                    <p class="mt-1"><i class="text-success d-block fa-solid fa-check"></i></p>
+                                                {% else %}
+                                                    <p class="mt-1"><i class="text-danger d-block fa-solid fa-xmark"></i></p>
+                                                {% endif %}
+                                            </div>
+                                            <div class="mb-3 ms-3">
+                                                {% if account_count > 1 %}
+                                                    <b class="fs-5">Accounts</b>
+                                                {% else %}
+                                                    <b class="fs-5">Account</b>
+                                                {% endif %}
+                                                <p>{{ account_count }}</p>
+                                            </div>
+                                            <div class="mb-3 ms-3">
+                                                {% if transaction_count > 1 %}
+                                                    <b class="fs-5">Transactions</b>
+                                                {% else %}
+                                                    <b class="fs-5">Transaction</b>
+                                                {% endif %}
+                                                <p>{{ transaction_count }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -153,7 +207,7 @@
     </div>
 
     <!-- Copyright -->
-    <footer class="main-footer ">
+    <footer class="main-footer position-relative z-1">
         <div class="float-right d-none d-sm-inline">
             <b>Namania</b>
         </div>
