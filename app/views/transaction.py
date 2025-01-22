@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.models import User
-from app.models import Account, Transaction
+from app.models import Account, Transaction, Category
 
 def newTransactionView(request):
     if "username" not in request.session.keys():
@@ -15,8 +15,9 @@ def newTransactionView(request):
         receiver = Account.objects.get(pk=request.POST["receiver"])
         amount = request.POST["amount"]
         comment = request.POST["description"]
+        category = Category.objects.get(pk=request.POST["category"])
 
-        Transaction.objects.create(sender=sender, receiver=receiver, amount=amount, comment=comment)
+        Transaction.objects.create(sender=sender, receiver=receiver, amount=amount, comment=comment, category=category)
         if "url" in request.GET.keys() and request.GET["url"] == "account":
             return redirect("account", accountId=accountId)
         else:
@@ -33,4 +34,11 @@ def newTransactionView(request):
             sender, receiver = receiver, sender
 
     accounts = Account.objects.filter(owner=user).order_by("balance").reverse()
-    return render(request, "app/new-transaction.html", {"accounts": accounts, "accountId": accountId, "sender": sender, "receiver": receiver})
+    categories = Category.objects.all().order_by("label")
+    return render(request, "app/new-transaction.html", {
+        "accounts": accounts,
+        "accountId": accountId,
+        "sender": sender,
+        "receiver": receiver,
+        "categories": categories,
+    })

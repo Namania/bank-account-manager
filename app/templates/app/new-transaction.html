@@ -172,6 +172,15 @@
                                                     <label for="amount" class="form-label">Amount</label>
                                                     <input type="number" name="amount" min="0" value="0" class="form-control" id="amount" required>
                                                 </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Category</label>
+                                                    <select name="category" class="form-select" required>
+                                                        <option value="" selected>Select a category</option>
+                                                        {% for category in categories %}
+                                                            <option value="{{ category.pk }}">{{ category.label }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
                                                 <div class="form-floating mb-3">
                                                     <textarea name="description" maxlength="200" class="form-control" id="floatingTextarea" required></textarea>
                                                     <label for="floatingTextarea">Description</label>
