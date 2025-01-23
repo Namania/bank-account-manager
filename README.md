@@ -42,14 +42,24 @@ This project is made with django. It is a bank account manager to track your exp
 ### Admin
 
 To add categories, you must do it through the admin panel.\
-Do not create any account as administrator account except the `Bank` one.
+Do not create any account where the owner is an administrator except the `Bank` one.\
+Do not create transaction from admin panel (if you do, there is no accounts update).\
+Else you can edit all Accounts
 
 ### User
 
-You can make transactions betweens accounts `color: 🟦`
+<span style="color: green">// `Bank` account only usable on credit or debit transaction</span>
+
+Transaction color code:
+- `Betweens accounts: 🟦`
+- `Credit: 🟥`
+- `Debit: 🟩`
+
+You can make transactions betweens accounts:
 
 ![internal-transaction](./git-image/internal-transaction.png)
 
-or simulate an external transaction (such as an in-store purchase) by credit `color: 🟩` or debit `color: 🟥` with a “Bank” account
+Or simulate an external transaction (such as an in-store purchase) by credit or debit (automatically select `Bank` account):
 
 ![external-transaction](./git-image/external-transaction.png)
+![transaction-bank](./git-image/transaction-bank.png)
