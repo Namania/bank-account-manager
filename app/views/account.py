@@ -13,9 +13,9 @@ def accountView(request, accountId):
     userId = request.session["id"]
     user = get_object_or_404(User, pk=userId)
 
-    RED = 'rgb(233, 24, 69)'
-    GREEN = 'rgb(36, 202, 14)'
-    BLUE = 'rgb(0, 123, 255)'
+    RED = 'rgb(236, 112, 99)'
+    GREEN = 'rgb(82, 190, 128)'
+    BLUE = 'rgb(54, 162, 235)'
     datasets = {
         "labels": [
         ],
