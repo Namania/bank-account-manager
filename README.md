@@ -8,7 +8,7 @@ This project is made with django. It is a bank account manager to track your exp
 
 2 - Make migrations & installation
 > cd bank-account-manager\
-> pip install -r requirement.txt
+> pip install -r requirement.txt\
 > python manage.py makemigrations app\
 > python manage.py migrate
 
