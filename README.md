@@ -6,8 +6,9 @@ This project is made with django. It is a bank account manager to track your exp
 1 - Clone this repos
 > git clone https://gitlab.com/private75690930/bank-account-manager.git
 
-2 - Make migrations
+2 - Make migrations & installation
 > cd bank-account-manager\
+> pip install -r requirement.txt
 > python manage.py makemigrations app\
 > python manage.py migrate
 
