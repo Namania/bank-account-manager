@@ -47,3 +47,7 @@
     max-height: 500px;
     overflow-y: scroll;
 }
+
+.bottom-border {
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}

@@ -76,3 +76,20 @@ def delete(request, accountId):
         account.isActive = False
         account.save()
     return redirect("index")
+
+def edit(request, accountId):
+    if "username" not in request.session.keys():
+        return redirect("login")
+    userId = request.session["id"]
+    user = get_object_or_404(User, pk=userId)
+
+    accounts = getAccounts(user)
+    account = get_object_or_404(Account, pk=accountId)
+
+    if request.method == "POST":
+        account.label = request.POST["label"]
+        account.balance.amount = request.POST["balance"]
+        account.save()
+        return redirect(f"/{account.pk}/")
+
+    return render(request, "app/edit-account.html", {"account": account, "accounts": accounts, "user": user})

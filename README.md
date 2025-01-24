@@ -44,7 +44,6 @@ This project is made with django. It is a bank account manager to track your exp
 
 ### Admin
 
-To add categories, you must do it through the admin panel.\
 Do not create any account where the owner is an administrator except the `Bank` one.\
 Do not create transaction from admin panel (if you do, there is no accounts update).\
 Else you can edit all Accounts
@@ -66,3 +65,5 @@ Or simulate an external transaction (such as an in-store purchase) by credit or 
 
 ![external-transaction](./git-image/external-transaction.png)
 ![transaction-bank](./git-image/transaction-bank.png)
+
+You can also create categories.

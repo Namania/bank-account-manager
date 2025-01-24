@@ -38,10 +38,11 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 col-md-auto d-flex flex-grow-1 align-items-center">
-                        <h1 class="h4 m-0 pr-3 mr-3 border-right"> Categories </h1>
+                        <h1 class="h4 m-0 pr-3 mr-3 border-right"> Detail </h1>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/" class="active">Home</a></li>
-                            <li class="breadcrumb-item">Category</li>
+                            <li class="breadcrumb-item"><a href="/category/" class="active">Category</a></li>
+                            <li class="breadcrumb-item">Detail</li>
                         </ol>
                     </div>
                 </div>
@@ -55,39 +56,22 @@
                     <div class="row">
                         <div class="col-lg-12 col-sm-12">
                             <div class="card">
-                                <div class="header-card bottom-border py-3 card-header-flex text-center align-items-center fs-4">
-                                    <h5 class="m-0 fs-4">All categories</h5>
-                                    <a class="btn btn-success" href="/new-category/"><i class="custom-fas fas fa-plus text-xs"></i> Add category</a>
+                                <div class="card-header card-header-flex fs-4">
+                                    <h5 class="m-0 fs-4">{{ category.label }}</h5>
                                 </div>
-                                <div class="card-body transaction-list pt-0">
-                                    <table class="table table-sm fs-5">
-                                        <tbody>
-                                            <tr class="align-items-center">
-                                                <td class="text-start ps-3">
-                                                    <p class="my-3"><b>Label</b></p>
-                                                </td>
-                                                <td class="text-start ps-3">
-                                                    <p class="my-3"><b>Color</b></p>
-                                                </td>
-                                                <td class="text-start ps-3">
-                                                    <p class="my-3"><b>Action</b></p>
-                                                </td>
-                                            </tr>
-                                            {% for category in categories %}
-                                                <tr class="align-items-center text-center">
-                                                    <td class="text-start ps-3">
-                                                        <p id="category{{ category.pk }}" class="my-3">{{ category.label }}</p>
-                                                    </td>
-                                                    <td class="text-start ps-3">
-                                                        <input type="color" value="{{ category.color }}" disabled class="my-3 p-0 border-0"></input>
-                                                    </td>
-                                                    <td class="text-start ps-3">
-                                                        <a class="btn btn-primary my-2" href="/category/{{ category.pk }}/">Go there</a>
-                                                    </td>
-                                                </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
+                                <div class="card-body transaction-list pt-0 mt-4">
+                                    <form class="" method="post">
+                                        {% csrf_token %}
+                                        <div class="mb-3">
+                                            <label for="labelhelp" class="form-label">Label</label>
+                                            <input type="text" value="{{ category.label }}" name="label" class="form-control" id="labelhelp" aria-describedby="labelhelp" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="color" class="form-label">Color</label>
+                                            <input type="color" value="{{ category.color }}" name="color" class="form-control" id="color" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-success">Save</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
