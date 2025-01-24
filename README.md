@@ -67,3 +67,7 @@ Or simulate an external transaction (such as an in-store purchase) by credit or 
 ![transaction-bank](./git-image/transaction-bank.png)
 
 You can also create categories.
+
+![category-create](./git-image/cat-new.png)
+![category](./git-image/cat.png)
+![category-edit](./git-image/cat-edit.png)
