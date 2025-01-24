@@ -11,4 +11,4 @@ def categoryIndex(request):
 
     accounts = Account.objects.filter(owner=user).order_by("balance").reverse()
     categories = Category.objects.all()
-    return render(request, "app/category.html", {"accounts": accounts, "categories": categories})
+    return render(request, "app/category.html", {"accounts": accounts, "categories": categories, "user": user})
