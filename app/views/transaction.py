@@ -17,7 +17,7 @@ def newTransactionView(request):
         receiver = Account.objects.get(pk=request.POST["receiver"])
         amount = request.POST["amount"]
         comment = request.POST["description"]
-        category = Category.objects.get(pk=request.POST["category"])
+        category = Category.objects.get(pk=request.POST["category"]) if request.POST["category"] != "" else None
 
         if sender.label != "Bank":
             sender.balance.amount -= int(amount)
