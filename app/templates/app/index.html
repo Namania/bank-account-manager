@@ -72,9 +72,9 @@
                                                                 </td>
                                                                 <td class="text-end">
                                                                     {% if account.isPositive %}
-                                                                        <p class="list-btn-item text-success">{{ account.balance.amount }} {{ account.balance.currency }}</p>
+                                                                        <p class="list-btn-item text-success">{{ account.getBalance }} {{ account.balance.currency }}</p>
                                                                     {% else %}
-                                                                        <p class="list-btn-item text-danger">{{ account.balance.amount }} {{ account.balance.currency }}</p>
+                                                                        <p class="list-btn-item text-danger">{{ account.getBalance }} {{ account.balance.currency }}</p>
                                                                     {% endif %}
                                                                 </td>
                                                                 <td>

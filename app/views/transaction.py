@@ -20,9 +20,9 @@ def newTransactionView(request):
         category = Category.objects.get(pk=request.POST["category"]) if request.POST["category"] != "" else None
 
         if sender.label != "Bank":
-            sender.balance.amount -= int(amount)
+            sender.remove(float(amount))
         if receiver.label != "Bank":
-            receiver.balance.amount += int(amount)
+            receiver.add(float(amount))
 
         sender.save()
         receiver.save()

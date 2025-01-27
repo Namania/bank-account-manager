@@ -53,7 +53,9 @@ def newAccountView(request):
 
 
     if request.method == "POST":
-        Account.objects.create(owner=user, label=request.POST["label"], balance=request.POST["balance"])
+        account = Account.objects.create(owner=user, label=request.POST["label"], balance=0)
+        account.set(float(request.POST["balance"]))
+        account.save()
         return redirect("index")
 
     accounts = getAccounts(user)
@@ -82,7 +84,7 @@ def edit(request, accountId):
 
     if request.method == "POST":
         account.label = request.POST["label"]
-        account.balance.amount = request.POST["balance"]
+        account.set(request.POST["balance"])
         account.save()
         return redirect(f"/{account.pk}/")
 
