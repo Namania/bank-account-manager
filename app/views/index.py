@@ -40,15 +40,18 @@ def index(request):
     }
 
     account_ids = []
-    totalAmount = 0
+    totalAmount = {
+        "amount": 0,
+        "currency": "EUR"
+    }
     index = 0
     for account in accounts:
         account_ids.append(account.pk)
         datasets["labels"].append(account.label)
-        datasets["data"].append(float(account.balance.amount))
+        datasets["data"].append(account.getBalance())
         datasets["color"].append(colors[index % len(colors)])
         index+=1
-        totalAmount += account.balance
+        totalAmount["amount"] += account.getBalance()
 
     print(last_month, current_month)
     transactions = Transaction.objects.filter((Q(sender_id__in=account_ids) | Q(receiver_id__in=account_ids)) & Q(create_at__range=[last_month, current_month])).order_by("-create_at")[:4]

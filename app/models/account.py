@@ -17,6 +17,18 @@ class Account(models.Model):
     )
     def isPositive(self):
         return self.balance.amount >= 0
+    
+    def add(self, amount: float):
+        self.balance.amount += int(amount * 100)
+
+    def remove(self, amount: float):
+        self.balance.amount -= int(amount * 100)
+
+    def getBalance(self):
+        return float(int(self.balance.amount) / 100)
+    
+    def set(self, amount: float):
+        self.balance.amount = int(amount * 100)
 
     def getName(self):
         return self.label if self.isActive else f"{self.label} (deleted)"

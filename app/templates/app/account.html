@@ -65,9 +65,9 @@
                                             <div class="mb-3">
                                                 <b>Balance</b>
                                                 {% if account.isPositive %}
-                                                    <p class="text-success" >{{ account.balance.amount }} {{ account.balance.currency }}</p>
+                                                    <p class="text-success" >{{ account.getBalance }} {{ account.balance.currency }}</p>
                                                 {% else %}
-                                                    <p class="text-danger" >{{ account.balance.amount }} {{ account.balance.currency }}</p>
+                                                    <p class="text-danger" >{{ account.getBalance }} {{ account.balance.currency }}</p>
                                                 {% endif %}
                                             </div>
                                             <div class="mb-3">
