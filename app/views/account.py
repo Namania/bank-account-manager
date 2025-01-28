@@ -84,7 +84,7 @@ def edit(request, accountId):
 
     if request.method == "POST":
         account.label = request.POST["label"]
-        account.set(request.POST["balance"])
+        account.set(float(request.POST["balance"]))
         account.save()
         return redirect(f"/{account.pk}/")
 
