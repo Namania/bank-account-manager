@@ -43,14 +43,28 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
+
                 <li class="nav-header">Accounts</li>
                 {% for account in accounts %}
                     <li class="nav-item">
                         <a href="/{{ account.id }}/" class="nav-link">
-                            <i class="nav-icon fas fa-circle"></i> <p>{{ account.label }}</p>
+                            <i class="nav-icon fas fa-landmark"></i> <p>{{ account.label }}</p>
                         </a>
                     </li>
                 {% endfor %}
+
+                <li class="nav-header">Panel</li>
+                <li class="nav-item">
+                    <a href="/transaction/" class="nav-link">
+                        <i class="nav-icon fas fa-sack-dollar"></i> <p>Transactions</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/category/" class="nav-link">
+                        <i class="nav-icon fas fa-layer-group"></i> <p>Categories</p>
+                    </a>
+                </li>
+
                 <li class="nav-header">Actions</li>
                 <li class="nav-item">
                     <a href="/new-account/" class="nav-link">
@@ -58,13 +72,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/new-transaction/" class="nav-link">
-                        <i class="nav-icon fas fa-right-left"></i> <p>Make a transaction</p>
+                    <a href="/new-category/" class="nav-link">
+                        <i class="nav-icon fas fa-plus"></i> <p>Add category</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/category/" class="nav-link">
-                        <i class="nav-icon fas fa-layer-group"></i> <p>Categories</p>
+                    <a href="/new-transaction/" class="nav-link">
+                        <i class="nav-icon fas fa-right-left"></i> <p>Make a transaction</p>
                     </a>
                 </li>
             </ul>

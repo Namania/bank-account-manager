@@ -11,7 +11,7 @@ class Transaction(models.Model):
     receiver = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True, related_name="receiver")
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name="category")
     amount = MoneyField(max_digits=14, decimal_places=2, default_currency='EUR', default=0)
-    comment = models.CharField(max_length=200,null=True)
+    comment = models.CharField(max_length=200, null=True)
     create_at = models.DateTimeField("Create at", default=timezone.now)
 
     def __str__(self):

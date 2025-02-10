@@ -38,10 +38,11 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 col-md-auto d-flex flex-grow-1 align-items-center">
-                        <h1 class="h4 m-0 pr-3 mr-3 border-right"> Dashboard </h1>
+                        <h1 class="h4 m-0 pr-3 mr-3 border-right"> New </h1>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/" class="active">Home</a></li>
-                            <li class="breadcrumb-item">Dashboard</li>
+                            <li class="breadcrumb-item"><a href="/transaction/" class="active">Transaction</a></li>
+                            <li class="breadcrumb-item">New</li>
                         </ol>
                     </div>
                 </div>
@@ -69,7 +70,7 @@
                                                         {% if sender is not None  %}
                                                             <option value="{{ sender.pk }}" selected>{{ sender.label }}</option>
                                                         {% else %}
-                                                            <option value="" selected>Select a receiver</option>
+                                                            <option value="" selected>Select a sender</option>
                                                             {% for account in accounts %}
                                                                 {% if receiver is None or receiver != account  %}
                                                                     <option value="{{ account.pk }}">{{ account.label }}</option>
@@ -95,7 +96,7 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="amount" class="form-label">Amount</label>
-                                                    <input type="number" name="amount" min="0" value="0" step="0.01" class="form-control" id="amount" required>
+                                                    <input type="number" name="amount" min="0" placeholder="0" step="0.01" class="form-control" id="amount" required>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Category</label>
@@ -106,9 +107,9 @@
                                                         {% endfor %}
                                                     </select>
                                                 </div>
-                                                <div class="form-floating mb-3">
-                                                    <textarea name="description" maxlength="200" class="form-control" id="floatingTextarea"></textarea>
-                                                    <label for="floatingTextarea">Description</label>
+                                                <div class="mb-3">
+                                                    <label for="textarea1" class="form-label">Description</label>
+                                                    <textarea id="textarea1" name="description" maxlength="200" class="form-control" rows="3"></textarea>
                                                 </div>
                                                 <button type="submit" class="btn btn-success">Create</button>
                                             </form>

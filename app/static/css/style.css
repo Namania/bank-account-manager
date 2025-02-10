@@ -51,3 +51,15 @@
 .bottom-border {
     border-bottom: 1px solid rgba(0,0,0,.125);
 }
+
+.min-size-btn {
+    min-width: 100px;
+}
+
+.h-90 {
+    height: 90%;
+}
+
+.reset-max-h {
+    max-height: none !important;
+}
