@@ -63,3 +63,7 @@
 .reset-max-h {
     max-height: none !important;
 }
+
+.timeline-button-height {
+    height: 30px;
+}

@@ -140,8 +140,13 @@
                                                             <li><i class="fas fa-sack-dollar"></i> {{ transaction.amount.amount }} {{ transaction.amount.currency }}</li>
                                                         </ul>
                                                     </div>
-                                                    <div class="timeline-body text-body-tertiary">
-                                                        <span class="time"><i class="fas fa-clock"></i> {{ transaction.create_at.ctime }}</span>
+                                                    <div class="timeline-header">
+                                                        <ul class="list-unstyled text-body-tertiary p-0 mb-0">
+                                                            <li><span class="time"><i class="fas fa-clock"></i> {{ transaction.create_at.ctime }}</span></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="timeline-body">
+                                                        <a href="/transaction/{{ transaction.pk }}/" class="btn btn-xs btn-info fs-6 little-button-radius px-2"><i class="fas me-1 fa-info text-md"></i> More info</a>
                                                     </div>
                                                 </div>
                                             </div>

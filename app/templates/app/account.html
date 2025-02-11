@@ -127,6 +127,9 @@
                                                         <td>
                                                             <p class="my-3"><b>Create Date</b></p>
                                                         </td>
+                                                        <td>
+                                                            <p class="my-3"><b>Action</b></p>
+                                                        </td>
                                                     </tr>
                                                     {% for transaction in transactions %}
                                                         <tr class="align-items-center">
@@ -168,6 +171,9 @@
                                                             </td>
                                                             <td>
                                                                 <p class="my-3 fs-6 text-secondary"><i class="fas fa-clock me-2"></i>{{ transaction.create_at.ctime }}</p>
+                                                            </td>
+                                                            <td class="position-relative">
+                                                                <a href="/transaction/{{ transaction.pk }}/" class="btn btn-xs btn-success fs-6 little-button-radius position-absolute top-50 translate-middle-y min-size-btn px-2"><i class="fas me-2 fa-arrow-right text-xs"></i> Go there</a>
                                                             </td>
                                                         </tr>
                                                     {% endfor %}
