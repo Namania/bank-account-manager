@@ -8,3 +8,4 @@ drf-redesign
 markdown
 python-dotenv
 psycopg2-binary
+whitenoise
