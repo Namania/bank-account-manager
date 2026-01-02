@@ -5,6 +5,8 @@ django-filter
 django-money
 djangorestframework
 drf-redesign
+gunicorn
 markdown
 python-dotenv
 psycopg2-binary
+whitenoise
