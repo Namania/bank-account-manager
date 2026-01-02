@@ -6,7 +6,7 @@ WORKDIR /app
 
 COPY . /app/
 
-RUN python -m pip install -r requirement.txt
+RUN python -m pip install -r requirements.txt
 RUN python manage.py makemigrations app
 RUN python manage.py migrate
 RUN python manage.py create_bank
