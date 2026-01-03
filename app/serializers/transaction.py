@@ -2,9 +2,12 @@ from django.db.models import Q
 from rest_framework import serializers, viewsets
 from app.models.transaction import Transaction
 from app.serializers.category import CategorySerializer
+from app.serializers.account import AccountSerializer
 
 class TransactionSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
+    receiver = AccountSerializer()
+    sender = AccountSerializer()
 
     class Meta:
         model = Transaction
