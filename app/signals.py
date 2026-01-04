@@ -20,3 +20,17 @@ def updateBalance(sender, instance, **kwargs):
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created and not instance.username == "Bank":
         Token.objects.create(user=instance)
+
+@receiver(post_save, sender=Transaction)
+def update_account_balance(sender, instance, created, **kwargs):
+    if created:
+        receiver_account = instance.receiver
+        sender_account = instance.sender
+
+        if receiver_account.label != "Bank":
+            receiver_account.balance += instance.amount * 100
+            receiver_account.save()
+
+        if sender_account.label != "Bank":
+            sender_account.balance -= instance.amount * 100
+            sender_account.save()
